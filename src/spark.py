@@ -38,7 +38,7 @@ class Sparker(object):
     def _parse(self):
         arg_parser = ArgumentParser()
         arg_parser.add_argument('-p', '--pc', help = 'Install spark on your pc (not server machine)', action = 'store_true')
-        arg_parser.add_argument('-f', '--file', help = 'Specify spark src pkg here', nargs = '+')
+        arg_parser.add_argument('-f', '--file', help = 'Specify spark src pkg here')
         # options in group cannot be use together
         group = arg_parser.add_mutually_exclusive_group()
         group.add_argument('--ubuntu', help = 'Install spark for ubuntu', action = 'store_true')
@@ -62,10 +62,10 @@ class Sparker(object):
             self.dst = cfg_parser.get('server', 'dst')
             self.profile = cfg_parser.get('server', 'profile')
         # spark src pkg
+        self.version = cfg_parser.get('src', 'src')
         if args.file:
             self.src = args.file
         else:
-            self.version = cfg_parser.get('src', 'src')
             self.src = join(src_dir, self.version)
         if not os.path.isdir(self.src):
             print('!!! Cannot locate spark src pkg. Please check README file.')

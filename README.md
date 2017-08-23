@@ -22,7 +22,9 @@ tar -xvzf ~/Download/spark-2.2.0-bin-hadoop2.7.tar.gz
 
 ## 安装
 
-spark的开发环境不需要运行脚本`build.py`。
+spark的开发环境不需要运行脚本`build.py`，而是运行src目录下的`spark.py`。
+
+你可以使用`python spark.py --help`命令查看帮助。
 
 有两种方法可以使用脚本安装spark。
 
@@ -36,14 +38,15 @@ spark的开发环境不需要运行脚本`build.py`。
 # 假如我的build文件夹在~/build
 mv ~/Download/spark-2.2.0-bin-hadoop2.7 ~/build/src/spark
 cd ~/build/src/
-# 如果你的发行版是fedora，就--ubuntu换成--fedora，注意全部是小写
-python spark.py --ubuntu
+# 如果你的发行版是fedora，就把--ubuntu换成--fedora，注意全部是小写
+# 使用-p参数声明为个人用户安装
+python spark.py --ubuntu -p
 ```
 
 ### 或者，在运行脚本的时候指定目录
 
 ```sh
-python spark.py -f ~/Download/spark-2.2.0-bin-hadoop2.7 --ubuntu
+python spark.py -f ~/Download/spark-2.2.0-bin-hadoop2.7 --ubuntu -p
 ```
 
 # 配置服务器的spark运行环境
@@ -80,7 +83,7 @@ Spark模块安装java，并将spark环境变量写入配置文件。
 
 1. 将用户下载的spark文件移动到目标目录下。目标目录会根据命令行参数而改变。
 2. 配置spark路径和python路径，目标profile会根据命令行参数而改变。
-3. 更改spark日志级别从INFO到WARN。
+3. 更改spark日志级别从INFO到WARN。(未完成)
 
 ## Conf_spark
 
@@ -89,3 +92,5 @@ Spark模块安装java，并将spark环境变量写入配置文件。
 1. 写入`hosts`文件
 2. 写入`slaves`文件
 3. 写入`spark-env.sh`文件
+
+## 配置文件config.ini
